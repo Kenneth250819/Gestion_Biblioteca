@@ -1,0 +1,46 @@
+﻿@model Gestion_Biblioteca.Models.Prestamos
+
+@{
+    ViewData["Title"] = "Registrar Préstamo";
+}
+
+<h2>Registrar Préstamo</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="IdUsuario">Usuario</label>
+        <select asp-for="IdUsuario" asp-items="ViewBag.Usuarios" class="form-control">
+            <option value="">-- Seleccione un usuario --</option>
+        </select>
+        <span asp-validation-for="IdUsuario" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IdLibro">Libro</label>
+        <select asp-for="IdLibro" asp-items="ViewBag.Libros" class="form-control">
+            <option value="">-- Seleccione un libro --</option>
+        </select>
+        <span asp-validation-for="IdLibro" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FechaPrestamo">Fecha de Prestamo</label>
+        <input asp-for="FechaPrestamo" class="form-control" type="date" />
+        <span asp-validation-for="FechaPrestamo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FechaDevolucionEsperada">Fecha de Devolución Esperada</label>
+        <input asp-for="FechaDevolucionEsperada" class="form-control" type="date" />
+        <span asp-validation-for="FechaDevolucionEsperada" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Estado">Estado</label>
+        <input asp-for="Estado" class="form-control" value="Pendiente" readonly />
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

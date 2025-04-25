@@ -1,0 +1,29 @@
+﻿@model Gestion_Biblioteca.Models.Prestamos
+
+@{
+    ViewData["Title"] = "Eliminar Préstamo";
+}
+
+<h2>¿Estás seguro de que deseas eliminar este préstamo?</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">ID Usuario</dt>
+        <dd class="col-sm-9">@Model.IdUsuario</dd>
+
+        <dt class="col-sm-3">ID Libro</dt>
+        <dd class="col-sm-9">@Model.IdLibro</dd>
+
+        <dt class="col-sm-3">Fecha Devolución Esperada</dt>
+        <dd class="col-sm-9">@Model.FechaDevolucionEsperada.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Estado</dt>
+        <dd class="col-sm-9">@Model.Estado</dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Gestion_Biblioteca.Models.Prestamos>
+
+@{
+    ViewData["Title"] = "Préstamos";
+}
+
+<h2>Lista de Préstamos</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar Nuevo Préstamo</a>
+
+    <div class="flex-grow-1">
+        <a asp-action="ExportToPdf" class="btn btn-outline-danger w-100">Exportar a PDF</a>
+    </div>
+    <div class="flex-grow-1">
+        <a asp-action="ExportToExcel" class="btn btn-outline-success w-100">Exportar a Excel</a>
+    </div>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Usuario (ID)</th>
+            <th>Libro (ID)</th>
+            <th>Fecha Prestamo</th>
+            <th>Fecha Devolución Esperada</th>
+            <th>Fecha Devolución Real</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prestamo in Model)
+        {
+            <tr>
+                <td>@prestamo.IdUsuario</td>
+                <td>@prestamo.IdLibro</td>
+                <td>@prestamo.FechaPrestamo.ToShortDateString()</td>
+                <td>@prestamo.FechaDevolucionEsperada.ToShortDateString()</td>
+                <td>@prestamo.FechaDevolucionReal?.ToShortDateString()</td>
+                <td>@prestamo.Estado</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@prestamo.Id" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@prestamo.Id" class="btn btn-sm btn-info">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@prestamo.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
